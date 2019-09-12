@@ -1,0 +1,10 @@
+# .gitignore
+/.nyc_output
+/node_modules/ 
+**/*.js
+.DS_Store
+**/*.js.map
+dist/
+coverage/
+config-user.json
+config.json

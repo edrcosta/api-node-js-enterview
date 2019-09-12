@@ -1,0 +1,19 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#513c5e",
+        "titleBar.activeForeground": "#FEFBFE"
+    },
+    "files.exclude": {
+        "**/*.js.map": true,
+        "coverage" : true,
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*?.js": {
+            "when": "$(basename).tsx"
+        },
+        "**/node_modules": true,
+        "**/*.css.d.ts": true,
+        "package-lock.json": true
+    }
+}
