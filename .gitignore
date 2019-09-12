@@ -6,5 +6,4 @@
 **/*.js.map
 dist/
 coverage/
-config-user.json
 config.json
