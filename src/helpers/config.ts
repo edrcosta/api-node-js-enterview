@@ -1,13 +1,21 @@
 import * as fs from 'fs';
+import { IConfig } from '../interfaces';
 
 export class Config{
     
-    static get(){
-        
-        const file = `${__dirname.replace('src/helpers', '')}config.json`;
+    static config : IConfig = null;
 
-        if(!fs.existsSync(file)) throw `Config file is missing please create`;
+    static get() : IConfig{
         
-        return require(file);
+        if(!Config.config){   
+            
+            const file = `${__dirname.replace('src/helpers', '')}config.json`;
+
+            if(!fs.existsSync(file)) throw `Config file is missing please create`;
+            
+            return require(file);
+        }
+
+        return Config.config;
     }
 }

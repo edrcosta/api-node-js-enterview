@@ -1,12 +1,14 @@
 import { Sequelize } from 'sequelize';
 import { Config } from '../helpers';
+import { IConfig } from '../interfaces';
+
 import { modelSchema, brandsSchema, vehicleSchema } from './models';
 
-export class Database{
-
+export class Database {
+    
+    public config : IConfig;
     private connection : Sequelize;
     public tables : any;
-    public config : any;
 
     constructor(){
 

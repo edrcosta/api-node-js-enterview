@@ -3,3 +3,7 @@ export interface IEndpoint {
     handdler : Function
     method : string
 }
+
+export interface IGetRequest{
+    page? : number
+}
