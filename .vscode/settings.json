@@ -15,7 +15,7 @@
         "**/node_modules": true,
         "**/*.css.d.ts": true,
         "package-lock.json": true,
-        "__tests__": true,
+        "__tests__": false,
         "jest.config.js": true
     }
 }

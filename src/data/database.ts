@@ -12,14 +12,19 @@ export class Database {
 
     constructor(){
 
+        const tableConfig = {
+            timestamps: false,
+            underscored: true
+        }
+
         this.config = Config.get();
 
         this.connection = new Sequelize(this.config.database, {});
 
         this.tables = {
-            models : this.connection.define('models', modelSchema ),
-            brands : this.connection.define('brands', brandsSchema),
-            vehicles : this.connection.define('vehicles', vehicleSchema),
+            models : this.connection.define('models', modelSchema, tableConfig),
+            brands : this.connection.define('brands', brandsSchema, tableConfig),
+            vehicles : this.connection.define('vehicles', vehicleSchema, tableConfig),
         }
     }
 }
