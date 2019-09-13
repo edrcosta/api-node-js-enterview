@@ -1,8 +1,9 @@
 import * as express from 'express';
 
 export class Brands{    
+    
     create(req : express.Request, res : express.Response){
-            console.log(req);
+        console.log(req);
         res.send('create');
     }
 
@@ -12,17 +13,17 @@ export class Brands{
     }
 
     getOne(req : express.Request, res : express.Response){
-            console.log(req);
+        console.log(req);
         res.send('getOne');
     }
 
     update(req : express.Request, res : express.Response){
-            console.log(req);
+        console.log(req);
         res.send('update');
     }
 
     remove(req : express.Request, res : express.Response){
-            console.log(req);
+        console.log(req);
         res.send('remove');
     }
 }

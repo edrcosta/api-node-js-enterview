@@ -1,5 +1,11 @@
 {
     "server" : {
         "port" : 3000
+    },
+    "database" : {
+        "user" : "root",
+        "password" : "12345678",
+        "database" : "laborittest",
+        "host" : "localhost"
     }
 }
