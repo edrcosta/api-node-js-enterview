@@ -1,5 +1,6 @@
 export interface IEndpoint {
     url : string
+    public? : boolean
     handdler : Function
     method : string
 }
