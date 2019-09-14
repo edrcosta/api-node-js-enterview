@@ -55,16 +55,16 @@ export class Vehicles{
         
         let data = req.body;
 
-        data.model_id = data.model;
-        data.brand_id = data.brand;
+        let errors = await Vehicles.crud().validateUpdate(data);
+
+        if(errors.length) return res.send(errors);
+
+        if(data.model) data.model_id = data.model;
+        if(data.brand) data.brand_id = data.brand;
 
         delete data.model;
         delete data.brand;
 
-        let err = await Vehicles.crud().validate(data);
-
-        if(err) return res.send(err);
-        
         return res.send({
             updatedId : await Vehicles.crud().update(req.params.id, data) ? req.params.id : false
         });

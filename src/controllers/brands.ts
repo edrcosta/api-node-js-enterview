@@ -14,7 +14,7 @@ export class Brands{
         
         let row = (await Brands.crud().getOne(req.params.id))[0];
 
-        res.send(row ? row : false);
+        res.send(row ? row : { error : `Not found id: ${req.params.id}`});
     }
 
     public async create(req : ICreateRequest<IModel>, res : express.Response){
@@ -23,6 +23,12 @@ export class Brands{
         
         if(err) return res.send(err);
         
+        let isUnique = (await Brands.crud().checkExistsByName({ name : req.body.name})) === 0;
+
+        if(!isUnique) return res.send({
+            error : 'this brand name aready exists'
+        });
+
         return res.send( await Brands.crud().create(req.body));
     }
 
@@ -32,15 +38,32 @@ export class Brands{
 
         if(err) return res.send(err);
         
-        return res.send({
-            updatedId : await Brands.crud().update(req.params.id, req.body) ? req.params.id : false
+        let isUnique = (await Brands.crud().checkExistsByName({ name : req.body.name})) === 0;
+
+        if(!isUnique) return res.send({
+            error : 'this brand name aready exists'
         });
+
+        let result = (await Brands.crud().update(req.params.id, req.body))[0];
+
+        if(result){
+            return res.send({ updated : req.params.id });
+        }
+
+        return res.send({ updated : false });
     }
 
     public async remove(req : IRemoveRequest, res : express.Response){
-        
-        const status = await Brands.crud().remove(req.params.id);
-        
-        res.send({ removed : status === 1 });
+        try {
+            
+            const status = await Brands.crud().remove(req.params.id);
+            
+            res.send({ removed : status === 1 });   
+        } catch (error) {
+            res.send({ 
+                removed : false,
+                error : 'this brand contains multiple vehicles associated, cannot remove' 
+            })
+        }
     }
 }

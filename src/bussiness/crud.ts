@@ -66,4 +66,8 @@ export class Crud {
     remove(id : number){
         return this.db.tables[this.table].destroy({ where: { id: id } });
     }
+
+    checkExistsByName(where:any){
+        return this.db.tables[this.table].count({ where: where });
+    }
 }

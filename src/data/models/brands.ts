@@ -11,6 +11,7 @@ export const brandsSchema = {
 		type : STRING,
 		allowNull : false,
 		trim: true,
+        unique: true,
 		validate: {
 			notNull: { msg: "name field is required" },
 		}

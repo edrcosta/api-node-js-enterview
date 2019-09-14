@@ -13,7 +13,7 @@ export class Models{
     public async getOne(req : any, res : express.Response){
         let row = (await Models.crud().getOne(req.params.id))[0];
 
-        res.send(row ? row : false);
+        res.send(row ? row : { error : `Not found id: ${req.params.id}`});
     }
 
     public async create(req : ICreateRequest<IModel>, res : express.Response){
@@ -22,6 +22,12 @@ export class Models{
         
         if(err) return res.send(err);
         
+        let isUnique = (await Models.crud().checkExistsByName({ name : req.body.name})) === 0;
+
+        if(!isUnique) return res.send({
+            error : 'this model name aready exists'
+        });
+
         return res.send( await Models.crud().create(req.body));
     }
 
@@ -31,15 +37,32 @@ export class Models{
 
         if(err) return res.send(err);
         
-        return res.send({
-            updatedId : await Models.crud().update(req.params.id, req.body) ? req.params.id : false
+        let isUnique = (await Models.crud().checkExistsByName({ name : req.body.name})) === 0;
+
+        if(!isUnique) return res.send({
+            error : 'this model name aready exists'
         });
+
+        let result = (await Models.crud().update(req.params.id, req.body))[0];
+        
+        if(result){
+            return res.send({ updated : req.params.id });
+        }
+
+        return res.send({ updated : false });
     }
 
     public async remove(req : IRemoveRequest, res : express.Response){
-        
-        const status = await Models.crud().remove(req.params.id);
-        
-        res.send({ removed : status === 1 });
+        try {
+                
+            const status = await Models.crud().remove(req.params.id);
+            
+            res.send({ removed : status === 1 });
+        } catch (error) {
+            res.send({ 
+                removed : false,
+                error : 'this model contains multiple vehicles associated, cannot remove' 
+            })
+        }
     }
 }

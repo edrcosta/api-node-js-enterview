@@ -9,9 +9,11 @@ export const modelSchema = {
 	name: {
 		type : STRING,
 		allowNull : false,
+		unique: true,
 		trim: true,
 		validate: {
 			notNull: { msg: "name field is required" },
+			unique : { msg : "must be uniqueee"}
 		}
 	}
 };

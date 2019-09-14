@@ -6,6 +6,16 @@ export class VehiclesBO {
 
     private fields = [ "id", "value", "brand", "model", "year_model", "fuel"];
 
+    validateUpdate = (data) => {
+        let errors = [];
+        Object.keys(data).forEach((field : string) => {
+            if(this.fields.indexOf(field) === -1){
+                errors.push(`field ${field} is not allowed in vehicle`);
+            }
+        });
+        return errors;
+    }
+
     validate(data : any){
         return new Promise((resolve : any) => {
             let db = new Database();
