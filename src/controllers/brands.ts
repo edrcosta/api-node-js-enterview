@@ -11,7 +11,10 @@ export class Brands{
     }
     
     public async getOne(req : any, res : express.Response){
-        res.send( (await Brands.crud().getOne(req.params.id))[0]);
+        
+        let row = (await Brands.crud().getOne(req.params.id))[0];
+
+        res.send(row ? row : false);
     }
 
     public async create(req : ICreateRequest<IModel>, res : express.Response){
