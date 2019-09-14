@@ -1,5 +1,6 @@
 {
     "env" : "development",
+    "jwt_secret" :  "Grqi2qzVXX",
     "server" : {
         "port" : 3000
     },

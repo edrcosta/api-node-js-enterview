@@ -1,11 +1,15 @@
-import { Brands, Models, Vehicles } from './controllers';
+import { Brands, Models, Vehicles, Authentication } from './controllers';
 import { IEndpoint } from './interfaces';
 
 let brands = new Brands();
 let models = new Models();
 let vehicles = new Vehicles();
+let authentication = new Authentication();
 
 export const Endpoints : IEndpoint[] = [
+    
+    { method : 'post', url : '/api/login', handdler :  authentication.login },
+
     { method : 'post', url : '/api/brands/', handdler : brands.create },
     { method : 'get', url : '/api/brands/', handdler : brands.list },
     { method : 'get', url : '/api/brands/:id', handdler : brands.getOne },
@@ -17,7 +21,7 @@ export const Endpoints : IEndpoint[] = [
     { method : 'get', url : '/api/models/:id', handdler : models.getOne },
     { method : 'put', url : '/api/models/:id', handdler : models.update },
     { method : 'delete', url : '/api/models/:id', handdler : models.remove },
-   
+
     { method : 'post', url : '/api/vehicles/', handdler : vehicles.create },
     { method : 'get', url : '/api/vehicles/', handdler : vehicles.list },
     { method : 'get', url : '/api/vehicles/:id', handdler : vehicles.getOne },

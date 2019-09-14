@@ -26,3 +26,10 @@ export interface IUpdateRequest<T>{
 export interface ICreateRequest<T>{
     body : T
 }
+
+export interface IAuthRequest{
+    body : {
+        username : string,
+        password : string,
+    }
+}
