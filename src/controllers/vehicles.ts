@@ -66,7 +66,7 @@ export class Vehicles{
         delete data.brand;
 
         return res.send({
-            updatedId : await Vehicles.crud().update(req.params.id, data) ? req.params.id : false
+            updated : await Vehicles.crud().update(req.params.id, data) ? req.params.id : false
         });
     }
 
