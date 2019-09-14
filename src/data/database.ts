@@ -22,7 +22,7 @@ export class Database {
 
         this.connection = new Sequelize(this.config.database, {
             dialect : 'mysql',
-            logging : false
+            logging : true,
         });
 
         this.tables = {
@@ -30,5 +30,12 @@ export class Database {
             brands : this.connection.define('brands', brandsSchema, tableConfig),
             vehicles : this.connection.define('vehicles', vehicleSchema, tableConfig),
         }
+
+        this.tables.models.hasOne(this.tables.vehicles, { forengKey: 'model_id', targetKey : 'id' });
+        this.tables.vehicles.belongsTo(this.tables.models, { forengKey: 'model_id', targetKey : 'id' });
+
+        this.tables.brands.hasOne(this.tables.vehicles, { forengKey: 'model_id', targetKey : 'id' });
+        this.tables.vehicles.belongsTo(this.tables.brands, { forengKey: 'model_id', targetKey : 'id' });
+
     }
 }

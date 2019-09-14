@@ -8,15 +8,30 @@ export const vehicleSchema = {
         type: INTEGER
     },
     value: {
-        type: STRING
+        type : STRING,
+		allowNull : false,
+		trim: true,
+		validate: {
+			notNull: { msg: "value field is required" },
+		}
     },
-    yearModel: {
-        type: NUMBER
+    year_model: {
+        type: NUMBER,
+		allowNull : false,
+		trim: true,
+		validate: {
+			notNull: { msg: "year_model field is required" },
+		}
     },
     fuel: {
-        type: STRING
+        type: STRING,
+        allowNull : false,
+		trim: true,
+		validate: {
+			notNull: { msg: "fuel field is required" },
+		}
     },
-    brand: {
+    brand_id: {
         type: INTEGER,
         allowNull: false,
         references: {
@@ -24,7 +39,7 @@ export const vehicleSchema = {
             key: 'id'
         }
     },
-    model: {
+    model_id: {
         type: INTEGER,
         allowNull: false,
         references: {

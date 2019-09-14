@@ -7,15 +7,16 @@
  */
 import { Database } from '../data';
 import { Config } from '../helpers';
-import { IModel } from '../interfaces';
 
 export class Crud {
 
     private table : string;
+    private fields : any;
     private db : Database;
 
-    constructor(table : string){
+    constructor(table : string, fields : any){
         this.table = table;
+        this.fields = fields;
         this.db = new Database();
     }
 
@@ -27,19 +28,20 @@ export class Crud {
         const offset = perPage * page - perPage;
 
         return this.db.tables[this.table].findAll({ offset: offset, limit: perPage, 
-            attributes: ['id', 'name'], raw: true
+            attributes: this.fields, raw: true
         });
     }
 
     getOne(id : number){
         return this.db.tables[this.table].findAll({   
+            limit : 1,
             where: {id: id}, 
-            attributes: ['id', 'name'], 
+            attributes: this.fields, 
             raw: true
         });
     }
 
-    validate(data : IModel){
+    validate(data : any){
         return new Promise((resolve : any) => {
 
             this.db.tables[this.table].build(data)
@@ -53,7 +55,7 @@ export class Crud {
         });
     }
 
-    create(data : IModel){        
+    create(data : any){        
         return this.db.tables[this.table].create(data);
     }
 

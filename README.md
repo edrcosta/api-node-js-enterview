@@ -22,6 +22,7 @@
 3. Install sequelize cli and run migration to setup your database
 ```
 	npm install -g sequelize-cli
+	cd database/
 	npx sequelize-cli db:migrate
 ```
 ## Execute Development 

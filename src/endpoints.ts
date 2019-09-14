@@ -21,6 +21,6 @@ export const Endpoints : IEndpoint[] = [
     { method : 'post', url : '/api/vehicles/', handdler : vehicles.create },
     { method : 'get', url : '/api/vehicles/', handdler : vehicles.list },
     { method : 'get', url : '/api/vehicles/:id', handdler : vehicles.getOne },
-    { method : 'put', url : '/api/vehicles/:id', handdler : vehicles.update },
+    // { method : 'put', url : '/api/vehicles/:id', handdler : vehicles.update },
     { method : 'delete', url : '/api/vehicles/:id', handdler : vehicles.remove },
 ];
