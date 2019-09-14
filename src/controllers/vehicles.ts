@@ -6,18 +6,20 @@ export class Vehicles{
 
     static crud = () => new VehiclesBO();
     
+    static format = (row : IVehicle) => {
+        return {
+            id : row.id,
+            value : row.value,
+            year_model : row.year_model,
+            fuel : row.fuel,
+            model : row["model.name"],
+            brand : row["brand.name"],
+        }
+    }
+
     public async list(req : IGetRequest, res : express.Response){
         
-        let data = await Vehicles.crud().list(req.body.page).map((row : any) => {            
-            return {
-                id : row.id,
-                value : row.value,
-                year_model : row.year_model,
-                fuel : row.fuel,
-                model : row["model.name"],
-                brand : row["brand.name"],
-            }
-        })
+        let data = await Vehicles.crud().list(req.body.page).map(Vehicles.format)
         
         res.send( data);
     }
@@ -25,14 +27,7 @@ export class Vehicles{
     public async getOne(req : any, res : express.Response){
         let row = (await Vehicles.crud().getOne(req.params.id));
 
-        res.send({
-            id : row.id,
-            value : row.value,
-            year_model : row.year_model,
-            fuel : row.fuel,
-            model : row["model.name"],
-            brand : row["brand.name"],
-        });
+        res.send(Vehicles.format(row));
     }
 
     public async create(req : ICreateRequest<IVehicle>, res : express.Response){
@@ -49,7 +44,7 @@ export class Vehicles{
         
         if(err) return res.send(err);
         
-        let result = await Vehicles.crud().create(req.body);
+        let result = await Vehicles.crud().create(data);
 
         data.id = result.id;
 
@@ -58,12 +53,20 @@ export class Vehicles{
 
     public async update(req : IUpdateRequest<IVehicle>, res : express.Response){
         
-        let err = await Vehicles.crud().validate(req.body);
+        let data = req.body;
+
+        data.model_id = data.model;
+        data.brand_id = data.brand;
+
+        delete data.model;
+        delete data.brand;
+
+        let err = await Vehicles.crud().validate(data);
 
         if(err) return res.send(err);
         
         return res.send({
-            updatedId : await Vehicles.crud().update(req.params.id, req.body) ? req.params.id : false
+            updatedId : await Vehicles.crud().update(req.params.id, data) ? req.params.id : false
         });
     }
 

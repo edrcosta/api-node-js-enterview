@@ -22,7 +22,7 @@ export class Database {
 
         this.connection = new Sequelize(this.config.database, {
             dialect : 'mysql',
-            logging : true,
+            logging : false,
         });
 
         this.tables = {
