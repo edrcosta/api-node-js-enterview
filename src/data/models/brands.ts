@@ -7,5 +7,12 @@ export const brandsSchema = {
 		primaryKey: true,
 		autoIncrement: true
 	},
-	name: STRING
+	name: {
+		type : STRING,
+		allowNull : false,
+		trim: true,
+		validate: {
+			notNull: { msg: "name field is required" },
+		}
+	}
 };
