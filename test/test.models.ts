@@ -5,7 +5,7 @@ import { IModel } from '../src/interfaces';
 beforeEach( (done) => { setTimeout(() => { done() }, 200) }); 
 
 let models = new ModelsBO();
-let firstId = 0, createdId = 0;
+let firstId = 0, createdId = 0; //Store ids of created itens to update and then remove
 
 describe('CRUD: Models', function() {
 
@@ -13,7 +13,7 @@ describe('CRUD: Models', function() {
 
 		it('should return an array of models', () => 
 			models.list(1).then((data :  Array<IModel>) => {	
-				firstId = data[0].id; //get id to test find one... 
+				firstId = data[0].id; 
 				assert.equal(typeof data, 'object');
 			})
 		);
@@ -30,7 +30,7 @@ describe('CRUD: Models', function() {
 
 	describe('>>> Method get', () => {
 		it('should return a valid model element', () =>
-			models.getOne(firstId).then((data : IModel) => {	
+			models.getOne(firstId).then((data : IModel) => {
 				assert.equal(typeof data[0].id, 'number');
 				assert.equal(typeof data[0].name, 'string');
 			})

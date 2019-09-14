@@ -1,14 +1,35 @@
 import { INTEGER, NUMBER, STRING } from 'sequelize';
 
 export const vehicleSchema = {
-	id: {
-		type: INTEGER,
-		primaryKey: true,
-		autoIncrement: true
-	},
-    value: STRING,
-    brand: STRING,
-    model: STRING,
-    yearModel: NUMBER,
-    fuel: STRING,
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: INTEGER
+    },
+    value: {
+        type: STRING
+    },
+    yearModel: {
+        type: NUMBER
+    },
+    fuel: {
+        type: STRING
+    },
+    brand: {
+        type: INTEGER,
+        allowNull: false,
+        references: {
+            model: 'brands',
+            key: 'id'
+        }
+    },
+    model: {
+        type: INTEGER,
+        allowNull: false,
+        references: {
+            model: 'models',
+            key: 'id'
+        }
+    },
 };

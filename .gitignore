@@ -6,4 +6,3 @@
 **/*.js.map
 dist/
 coverage/
-config.json

@@ -22,11 +22,9 @@
     "typescript": "~3.6.0"
   },
   "scripts": {
-    "clean": "rimraf coverage build tmp",
     "start": "node src/main.js",
     "build": "tsc -p tsconfig.release.json",
     "build:watch": "tsc -w -p tsconfig.release.json",
-    "lint": "tslint -t stylish --project \"tsconfig.json\"",
     "test": "mocha",
     "test:watch": "mocha -w"
   },

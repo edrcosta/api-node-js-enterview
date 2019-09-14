@@ -2,7 +2,6 @@
     "server" : {
         "port" : 3000
     },
-    "database" : "mysql://root:12345678@localhost:3306/laborittest",
     "endpoint" : {
         "perPage" : 10
     }
