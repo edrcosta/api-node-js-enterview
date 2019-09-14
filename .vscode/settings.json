@@ -5,7 +5,6 @@
     },
     "files.exclude": {
         "**/*.js.map": true,
-        "coverage" : true,
         "**/*.js": {
             "when": "$(basename).ts"
         },
@@ -15,7 +14,7 @@
         "**/node_modules": true,
         "**/*.css.d.ts": true,
         "package-lock.json": true,
-        "__tests__": false,
-        "jest.config.js": true
+        "tsconfig.release.json": true,
+        "test": false,
     }
 }

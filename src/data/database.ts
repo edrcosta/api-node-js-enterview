@@ -6,8 +6,9 @@ import { modelSchema, brandsSchema, vehicleSchema } from './models';
 
 export class Database {
     
-    public config : IConfig;
     private connection : Sequelize;
+    
+    public config : IConfig;
     public tables : any;
 
     constructor(){
@@ -15,11 +16,13 @@ export class Database {
         const tableConfig = {
             timestamps: false,
             underscored: true
-        }
+        };
 
         this.config = Config.get();
 
-        this.connection = new Sequelize(this.config.database, {});
+        this.connection = new Sequelize(this.config.database, {
+            dialect : 'mysql'
+        });
 
         this.tables = {
             models : this.connection.define('models', modelSchema, tableConfig),
