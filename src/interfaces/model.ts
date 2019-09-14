@@ -1,4 +1,4 @@
 export interface IModel{
     name : string,
-    id : number
+    id? : number
 }

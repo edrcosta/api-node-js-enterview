@@ -21,7 +21,8 @@ export class Database {
         this.config = Config.get();
 
         this.connection = new Sequelize(this.config.database, {
-            dialect : 'mysql'
+            dialect : 'mysql',
+            logging : false
         });
 
         this.tables = {

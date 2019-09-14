@@ -11,7 +11,7 @@ export class Vehicles{
     }
     
     public async getOne(req : any, res : express.Response){
-        res.send( await Vehicles.crud().getOne(req.params.id));
+        res.send( (await Vehicles.crud().getOne(req.params.id))[0]);
     }
 
     public async create(req : ICreateRequest<IModel>, res : express.Response){
