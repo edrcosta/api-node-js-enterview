@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { VehiclesBO } from '../bussiness';
 import { IGetRequest, IRemoveRequest, IUpdateRequest, ICreateRequest, IVehicle } from '../interfaces';
-
+import { Currency } from '../helpers';
 export class Vehicles{
 
     static crud = () => new VehiclesBO();
@@ -9,8 +9,8 @@ export class Vehicles{
     static format = (row : IVehicle) => {
         return {
             id : row.id,
-            value : row.value,
-            year_model : row.year_model,
+            value : Currency.formatReal(row.value),
+            yearModel : row.year_model,
             fuel : row.fuel,
             model : row["model.name"],
             brand : row["brand.name"],
@@ -49,11 +49,18 @@ export class Vehicles{
         
         if(err) return res.send(err);
         
+        if(data.value) data.value = Currency.normalizeDB(data.value);
+
         let result = await Vehicles.crud().create(data);
 
-        data.id = result.id;
-
-        return res.send(data);
+        return res.send({
+            "id": result.id,
+            "value": Currency.formatReal(result.value),
+            "yearModel": result.year_model,
+            "fuel": result.fuel,
+            "model": result.model_id,
+            "brand": result.model_id
+        });
     }
 
     public async update(req : IUpdateRequest<IVehicle>, res : express.Response){
@@ -69,6 +76,8 @@ export class Vehicles{
 
         delete data.model;
         delete data.brand;
+
+        if(data.value) data.value = Currency.normalizeDB(data.value);
 
         let result = await Vehicles.crud().update(req.params.id, data);
 

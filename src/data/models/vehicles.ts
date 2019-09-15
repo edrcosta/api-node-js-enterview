@@ -1,4 +1,4 @@
-import { INTEGER, NUMBER, STRING } from 'sequelize';
+import { INTEGER, NUMBER, STRING, DECIMAL } from 'sequelize';
 
 export const vehicleSchema = {
     id: {
@@ -8,7 +8,7 @@ export const vehicleSchema = {
         type: INTEGER
     },
     value: {
-        type : STRING,
+        type : DECIMAL,
 		allowNull : false,
 		trim: true,
 		validate: {

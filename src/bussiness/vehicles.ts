@@ -50,6 +50,9 @@ export class VehiclesBO {
         return db.tables.vehicles.findAll({ 
             offset: offset, 
             limit: perPage, 
+            order: [
+                ['value', 'ASC'],
+            ],
             where : filters,
             attributes: [ "id", "value", "year_model", "fuel"],
             raw: true,
