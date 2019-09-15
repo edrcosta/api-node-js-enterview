@@ -52,9 +52,34 @@ to run tests on root folder run the follow command
 npm test
 ```
 
+### Postman collection documentation 
+
+on folder /docs you found an postman collection with a doc from all endpoints
+
+
 ### Available Scripts:
 
 -  `build` - transpile TypeScript to ES6,
 -  `build:watch` - interactive watch mode to automatically transpile source files to js.
 -  `test` - run tests,
 -  `test:watch` - interactive watch mode to automatically re-run tests
+
+
+## Authentication 
+
+	this api uses json web tokens patten to authenticate some endpoins
+ 
+		url: [POST] localhost:3000/api/login
+
+		body : {
+			"username" : "admin",
+			"password" : "123"
+		}
+
+		response : {
+			"sucess": true,
+			"err": null,
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTU2ODUxNjU4NSwiZXhwIjoxNTY4NjQ2MTg1fQ.pdrhWRqwyd22Y7T65GgG0tENVkpo2L6kujVHkSre2aM"
+		}
+	
+	
