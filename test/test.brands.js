@@ -9,21 +9,31 @@ const getRand = () => Math.random().toString(36).substring(2, 15) + Math.random(
 describe('CRUD: Brands', function () {
     describe('>>> Method list', () => {
         it('should return an array of brands', () => brands.list(1).then((data) => {
-            firstId = data[0].id;
+            if (data.length > 0)
+                firstId = data[0].id;
             assert.equal(typeof data, 'object');
         }));
         it('should return contain valid brand elements', () => brands.list(1).then((data) => {
-            data.forEach((brand) => {
-                assert.equal(typeof brand.id, 'number');
-                assert.equal(typeof brand.name, 'string');
-            });
+            if (data.length > 0) {
+                data.forEach((brand) => {
+                    assert.equal(typeof brand.id, 'number');
+                    assert.equal(typeof brand.name, 'string');
+                });
+            }
         }));
     });
     describe('>>> Method get', () => {
-        it('should return a valid brand element', () => brands.getOne(firstId).then((data) => {
-            assert.equal(typeof data[0].id, 'number');
-            assert.equal(typeof data[0].name, 'string');
-        }));
+        it('should return a valid brand element', () => {
+            if (firstId > 0) {
+                return brands.getOne(firstId).then((data) => {
+                    assert.equal(typeof data[0].id, 'number');
+                    assert.equal(typeof data[0].name, 'string');
+                });
+            }
+            else {
+                console.log('WARNING: YOUR DATABASE DONT HAVE BRANDS');
+            }
+        });
     });
     describe('>>> Method create', () => {
         it('should create a new brand element', () => brands.create({ name: getRand() }).then((created) => {

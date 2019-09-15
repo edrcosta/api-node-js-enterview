@@ -30,6 +30,7 @@ this project is using sequelize ORM migrations, to simplify changes in database.
 npm install -g sequelize-cli
 cd database/
 npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
 ```
 
 ## Execute Development

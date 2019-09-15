@@ -15,28 +15,34 @@ describe('CRUD: Models', function() {
 
 		it('should return an array of models', () => 
 			models.list(1).then((data :  Array<IModel>) => {	
-				firstId = data[0].id; 
+				if(data.length > 0) firstId = data[0].id; 
 				assert.equal(typeof data, 'object');
 			})
 		);
 
 		it('should return contain valid model elements', () =>
 			models.list(1).then((data :  Array<IModel>) => {	
-				data.forEach((model : IModel) => {
-					assert.equal(typeof model.id, 'number');
-					assert.equal(typeof model.name, 'string');
-				});
+				if(data.length){
+					data.forEach((model : IModel) => {
+						assert.equal(typeof model.id, 'number');
+						assert.equal(typeof model.name, 'string');
+					});
+				}else{
+					console.log('WARNING: YOUR DATABASE DONT HAVE MODELS');
+				}
 			})
 		);
 	});
 
 	describe('>>> Method get', () => {
-		it('should return a valid model element', () =>
-			models.getOne(firstId).then((data : IModel) => {
-				assert.equal(typeof data[0].id, 'number');
-				assert.equal(typeof data[0].name, 'string');
-			})
-		);
+		it('should return a valid model element', () => {
+			if(firstId > 0){
+				return models.getOne(firstId).then((data : IModel) => {
+					assert.equal(typeof data[0].id, 'number');
+					assert.equal(typeof data[0].name, 'string');
+				});
+			}
+		});
 	});
 	
 	describe('>>> Method create', () => {
