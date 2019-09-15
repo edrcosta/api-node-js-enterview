@@ -1,4 +1,5 @@
-# Laborit Test
+# Laborit Test 
+[https://gitlab.com/snippets/1891831]
 
   ### dependencies
 
@@ -56,7 +57,6 @@ npm test
 
 on folder /docs you found an postman collection with a doc from all endpoints
 
-
 ### Available Scripts:
 
 -  `build` - transpile TypeScript to ES6,
@@ -64,8 +64,7 @@ on folder /docs you found an postman collection with a doc from all endpoints
 -  `test` - run tests,
 -  `test:watch` - interactive watch mode to automatically re-run tests
 
-
-## Authentication 
+## Authentication Endpoint
 
 this api uses json web tokens patten to authenticate some endpoins
  
@@ -80,6 +79,6 @@ this api uses json web tokens patten to authenticate some endpoins
 		response : {
 			"sucess": true,
 			"err": null,
-			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTU2ODUxNjU4NSwiZXhwIjoxNTY4NjQ2MTg1fQ.pdrhWRqwyd22Y7T65GgG0tENVkpo2L6kujVHkSre2aM"
+			"token": "[JSON WEB TOKEN]"
 		}
 ```
