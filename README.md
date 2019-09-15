@@ -41,6 +41,16 @@ npm run-script build
 npm start
 ```
 
+you must see "listening on port 3000 :)" on your terminal
+
+### Tests 
+
+to run tests on root folder run the follow command
+
+```
+npm test
+```
+
 ### Available Scripts:
 
 -  `build` - transpile TypeScript to ES6,
