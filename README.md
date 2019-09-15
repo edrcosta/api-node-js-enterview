@@ -34,9 +34,10 @@ npx sequelize-cli db:migrate
 
 ## Execute Development
 
+	**back to project root folder `api-node-js-enterview/`**
+
 ```
-cd laborit-test/
-npm build:watch
+npm run-script build
 npm start
 ```
 

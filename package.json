@@ -23,8 +23,8 @@
   },
   "scripts": {
     "start": "node src/main.js",
-    "build": "tsc -p tsconfig.release.json",
-    "build:watch": "tsc -w -p tsconfig.release.json",
+    "build": "tsc",
+    "build:watch": "tsc -w",
     "test": "mocha",
     "test:watch": "mocha -w"
   },

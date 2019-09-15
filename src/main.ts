@@ -13,6 +13,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use((req : express.Request, res : express.Response, next : express.NextFunction) => {
+    console.log(req);
     res.setHeader('Access-Control-Allow-Origin', `http://localhost:${config.server.port}`);
     res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
     next();
@@ -30,6 +31,7 @@ Endpoints.forEach((endpoint : IEndpoint) => {
 
 //Setup error handdler
 app.use(function (err : express.ErrorRequestHandler, req : express.Request, res : express.Response, next : express.NextFunction) {
+    console.log(req);
     if (err.name === 'UnauthorizedError') {
         res.status(401).send(err);//pretty auth error
     }else {
