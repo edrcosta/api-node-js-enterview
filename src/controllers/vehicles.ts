@@ -27,7 +27,7 @@ export class Vehicles{
     public async getOne(req : any, res : express.Response){
         let row = (await Vehicles.crud().getOne(req.params.id));
 
-        res.send(Vehicles.format(row));
+        res.send(row ? Vehicles.format(row) : { error : `Not found id: ${req.params.id}`});
     }
 
     public async create(req : ICreateRequest<IVehicle>, res : express.Response){
