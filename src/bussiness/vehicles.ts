@@ -38,7 +38,7 @@ export class VehiclesBO {
         return db.tables.vehicles.create(data);
     }
 
-    list(page? : number){
+    list(page? : number, filters? : any){
 
         let db = new Database();
 
@@ -50,6 +50,7 @@ export class VehiclesBO {
         return db.tables.vehicles.findAll({ 
             offset: offset, 
             limit: perPage, 
+            where : filters,
             attributes: [ "id", "value", "year_model", "fuel"],
             raw: true,
             include : [
@@ -59,11 +60,30 @@ export class VehiclesBO {
         });
     }
 
-    update(id : number, data : any){
+    async update(id : number, data : any){
 
         let db = new Database();
 
-        return db.tables.vehicles.update( data, { where: { id: id } });
+        if((await db.tables.vehicles.count({ where: { id: id } })) === 0){
+            console.log({ error : `Not found id: ${id}`});
+            return { error : `Not found id: ${id}`};
+        }
+
+        let result;
+        try {
+            result = await db.tables.vehicles.update( data, { where: { id: id } })
+        } catch (error) {
+            if(JSON.stringify(error).indexOf('foreign key') > 0){
+                if(data.model_id && await db.tables.models.count({ where: { id: data.model_id } }) === 0){
+                    return { error : `model not found with id ${data.model_id}` }
+                }
+
+                if(data.brand_id && await db.tables.brands.count({ where: { id: data.brand_id } }) === 0){
+                    return { error : `brand not found with id ${data.brand_id}` }
+                }
+            }
+        }
+        return result;
     }
 
     getOne(id : number){

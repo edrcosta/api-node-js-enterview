@@ -19,7 +19,12 @@ export class Vehicles{
 
     public async list(req : IGetRequest, res : express.Response){
         
-        let data = await Vehicles.crud().list(req.body.page).map(Vehicles.format)
+        let filters : any = {};
+
+        if(req.body.brand) filters.brand_id = req.body.brand;
+        if(req.body.model) filters.model_id = req.body.model;
+
+        let data = await Vehicles.crud().list(req.body.page, filters).map(Vehicles.format)
         
         res.send( data);
     }
@@ -65,8 +70,12 @@ export class Vehicles{
         delete data.model;
         delete data.brand;
 
+        let result = await Vehicles.crud().update(req.params.id, data);
+
+        if(result.error) res.send(result);
+
         return res.send({
-            updated : await Vehicles.crud().update(req.params.id, data) ? req.params.id : false
+            updated :result ? req.params.id : false
         });
     }
 

@@ -7,7 +7,9 @@ export interface IEndpoint {
 
 export interface IGetRequest{
     body : {
-        page? : number
+        page? : number,
+        brand? : number,
+        model? : number,
     }
 }
 
