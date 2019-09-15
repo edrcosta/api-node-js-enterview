@@ -12,8 +12,7 @@ export const modelSchema = {
 		unique: true,
 		trim: true,
 		validate: {
-			notNull: { msg: "name field is required" },
-			unique : { msg : "must be uniqueee"}
+			notNull: { msg: "name field is required" }
 		}
 	}
 };

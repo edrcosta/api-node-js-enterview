@@ -2,7 +2,9 @@ import * as assert from 'assert';
 import { ModelsBO } from '../src/bussiness';
 import { IModel } from '../src/interfaces';
 
-beforeEach( (done) => { setTimeout(() => { done() }, 200) }); 
+const getRand = () =>  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+beforeEach( (done) => { setTimeout(() => { done() }, 100) }); 
 
 let models = new ModelsBO();
 let firstId = 0, createdId = 0; //Store ids of created itens to update and then remove
@@ -39,7 +41,7 @@ describe('CRUD: Models', function() {
 	
 	describe('>>> Method create', () => {
 		it('should create a new model element', () =>
-			models.create({ name: 'create test' }).then((created) => {
+			models.create({ name: getRand() }).then((created) => {
 				
 				createdId = created.id;
 			
@@ -51,7 +53,7 @@ describe('CRUD: Models', function() {
 
 	describe('>>> Method update', () => {
 		it(`should update the created model element`, () =>
-			models.update(createdId, { name: 'update test' }).then((status) => {
+			models.update(createdId, { name: getRand() }).then((status) => {
 				assert.equal(status[0], 1);
 			})
 		);	
