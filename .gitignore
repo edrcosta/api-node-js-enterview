@@ -4,5 +4,7 @@
 /src/**/*.js
 .DS_Store
 /src/**/*.js.map
-dist/
+build/
 coverage/
+config.json
+database/config/config.json
