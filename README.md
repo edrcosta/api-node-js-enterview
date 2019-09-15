@@ -1,13 +1,13 @@
 # Laborit Test
 
-### dependencies
+  ### dependencies
 
 - Node 10.x.x
 - Mysql
 
 ## install
 
-1. clone and install npm packages
+### 1. clone and install npm packages
 
 ```
 git clone https://github.com/edrcosta/api-node-js-enterview
@@ -15,15 +15,17 @@ cd api-node-js-enterview/
 npm install
 ```
 
-2. environment config files...
- 
-- change database settings on file `/database/config/config.json`.
-**by default is set to development environment**
-  
-- if you want change enviroment settings or jwt secret on file `/config.json`
+### 2. environment config files...
 
-3. Install sequelize cli and run migration to setup your database
+- copy file `/database/config/config-sample.json` and rename as `/database/config/config.json`
 
+- copy file `/config-sample.json` and rename as `/config.json`
+
+	**change to your settings in both config.json files**
+
+### 3. setup database
+
+this project is using sequelize ORM migrations, to simplify changes in database.
 ```
 npm install -g sequelize-cli
 cd database/
@@ -38,9 +40,9 @@ npm build:watch
 npm start
 ```
 
-### Scripts:
-  
+### Available Scripts:
+
 -  `build` - transpile TypeScript to ES6,
--  `build:watch` - interactive watch mode to automatically transpile source files,
+-  `build:watch` - interactive watch mode to automatically transpile source files to js.
 -  `test` - run tests,
 -  `test:watch` - interactive watch mode to automatically re-run tests
