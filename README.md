@@ -11,9 +11,8 @@
 
 ```
 git clone https://github.com/edrcosta/api-node-js-enterview
-cd lapi-node-js-enterview/
+cd api-node-js-enterview/
 npm install
-
 ```
 
 2. environment config files...
@@ -21,18 +20,14 @@ npm install
 - change database settings on file `/database/config/config.json`.
 **by default is set to development environment**
   
-- if you want change enviroment settings and jwt secret on file `/config.json`
+- if you want change enviroment settings or jwt secret on file `/config.json`
 
 3. Install sequelize cli and run migration to setup your database
 
 ```
-
 npm install -g sequelize-cli
-
 cd database/
-
 npx sequelize-cli db:migrate
-
 ```
 
 ## Execute Development
@@ -42,7 +37,6 @@ cd laborit-test/
 npm build:watch
 npm start
 ```
-
 
 ### Scripts:
   
