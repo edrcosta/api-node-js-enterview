@@ -67,8 +67,9 @@ on folder /docs you found an postman collection with a doc from all endpoints
 
 ## Authentication 
 
-	this api uses json web tokens patten to authenticate some endpoins
+this api uses json web tokens patten to authenticate some endpoins
  
+ ```
 		url: [POST] localhost:3000/api/login
 
 		body : {
@@ -81,5 +82,4 @@ on folder /docs you found an postman collection with a doc from all endpoints
 			"err": null,
 			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTU2ODUxNjU4NSwiZXhwIjoxNTY4NjQ2MTg1fQ.pdrhWRqwyd22Y7T65GgG0tENVkpo2L6kujVHkSre2aM"
 		}
-	
-	
+```
