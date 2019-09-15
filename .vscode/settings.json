@@ -14,7 +14,6 @@
         "**/node_modules": true,
         "**/*.css.d.ts": true,
         "package-lock.json": true,
-        "tsconfig.release.json": true,
-        "test": false,
+        "tsconfig.release.json": true
     }
 }

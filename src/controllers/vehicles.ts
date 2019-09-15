@@ -55,7 +55,7 @@ export class Vehicles{
         
         let data = req.body;
 
-        let errors = await Vehicles.crud().validateUpdate(data);
+        let errors = Vehicles.crud().validateUpdate(data);
 
         if(errors.length) return res.send(errors);
 
