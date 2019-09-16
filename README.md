@@ -13,6 +13,7 @@
 ```
 git clone https://github.com/edrcosta/api-node-js-enterview
 cd api-node-js-enterview/
+npm install -g typescript
 npm install
 ```
 
