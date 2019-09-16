@@ -68,7 +68,7 @@ on folder /docs you found an postman collection with a doc from all endpoints
 
 ## Authentication Endpoint
 
-this api uses json web tokens patten to authenticate some endpoins
+this api uses json web tokens pattern to authenticate some endpoins
  
  ```
 		url: [POST] localhost:3000/api/login
