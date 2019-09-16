@@ -26,7 +26,9 @@ npm install
 
 ### 3. setup database
 
-this project is using sequelize ORM migrations, to simplify changes in database.
+create an database with the same name of your config.json file... 
+
+this project is using sequelize ORM migrations, to versioning changes in database.
 ```
 npm install -g sequelize-cli
 cd database/
