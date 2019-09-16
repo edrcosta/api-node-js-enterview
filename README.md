@@ -26,7 +26,7 @@ npm install
 
 ### 3. setup database
 
-create an database with the same name of your config.json file... 
+Following your configurations, create in mysql an database
 
 this project is using sequelize ORM migrations, to versioning changes in database.
 ```
