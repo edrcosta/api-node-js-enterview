@@ -57,7 +57,7 @@ npm test
 
 ### Postman collection documentation 
 
-on folder /docs you found an postman collection with a doc from all endpoints
+on folder /docs you found a postman collection with a doc from all endpoints.
 
 ### Available Scripts:
 
