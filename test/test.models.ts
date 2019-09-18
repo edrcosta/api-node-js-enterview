@@ -5,15 +5,26 @@ import { IModel } from '../src/interfaces';
 const getRand = () =>  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
 let models = new ModelsBO();
-let firstId = 0, createdId = 0; //Store ids of created itens to update and then remove
+let createdId = 0; //Store ids of created itens to update and then remove
 
 describe('CRUD: Models', function() {
-
+	
+	describe('>>> Method create', () => {
+		it('should create a new model element', () =>
+			models.create({ name: getRand() }).then((created) => {
+				
+				createdId = created.id;
+			
+				assert.equal(typeof created.id, 'number');
+				assert.equal(typeof created.name, 'string');
+			})
+		);
+	});
+	
 	describe('>>> Method list', () => {
 
 		it('should return an array of models', () => 
 			models.list(1).then((data :  Array<IModel>) => {	
-				if(data.length > 0) firstId = data[0].id; 
 				assert.equal(typeof data, 'object');
 			})
 		);
@@ -34,25 +45,11 @@ describe('CRUD: Models', function() {
 
 	describe('>>> Method get', () => {
 		it('should return a valid model element', () => {
-			if(firstId > 0){
-				return models.getOne(firstId).then((data : IModel) => {
-					assert.equal(typeof data[0].id, 'number');
-					assert.equal(typeof data[0].name, 'string');
-				});
-			}
+			return models.getOne(createdId).then((data : IModel) => {
+				assert.equal(typeof data[0].id, 'number');
+				assert.equal(typeof data[0].name, 'string');
+			});
 		});
-	});
-	
-	describe('>>> Method create', () => {
-		it('should create a new model element', () =>
-			models.create({ name: getRand() }).then((created) => {
-				
-				createdId = created.id;
-			
-				assert.equal(typeof created.id, 'number');
-				assert.equal(typeof created.name, 'string');
-			})
-		);
 	});
 
 	describe('>>> Method update', () => {
