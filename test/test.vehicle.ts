@@ -1,8 +1,6 @@
 import * as assert from 'assert';
 import { VehiclesBO } from '../src/bussiness';
-import { IVehicle } from '../src/interfaces';
-
-beforeEach( (done) => { setTimeout(() => { done() }, 200) }); 
+import { IVehicle } from '../src/interfaces'
 
 let vehicles = new VehiclesBO();
 

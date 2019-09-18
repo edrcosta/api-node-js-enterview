@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const assert = require("assert");
 const bussiness_1 = require("../src/bussiness");
-beforeEach((done) => { setTimeout(() => { done(); }, 100); });
 let brands = new bussiness_1.BrandsBO();
 let firstId = 0, createdId = 0; //Store ids of created itens to update and then remove
 const getRand = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);

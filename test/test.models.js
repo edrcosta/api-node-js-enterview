@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const assert = require("assert");
 const bussiness_1 = require("../src/bussiness");
 const getRand = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-beforeEach((done) => { setTimeout(() => { done(); }, 100); });
 let models = new bussiness_1.ModelsBO();
 let firstId = 0, createdId = 0; //Store ids of created itens to update and then remove
 describe('CRUD: Models', function () {

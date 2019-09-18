@@ -2,8 +2,6 @@ import * as assert from 'assert';
 import { BrandsBO } from '../src/bussiness';
 import { IBrand } from '../src/interfaces';
 
-beforeEach( (done) => { setTimeout(() => { done() }, 100) }); 
-
 let brands = new BrandsBO();
 let firstId = 0, createdId = 0; //Store ids of created itens to update and then remove
 

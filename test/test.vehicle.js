@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const assert = require("assert");
 const bussiness_1 = require("../src/bussiness");
-beforeEach((done) => { setTimeout(() => { done(); }, 200); });
 let vehicles = new bussiness_1.VehiclesBO();
 describe('CRUD: Vehicles', function () {
     describe('>>> Method list', () => {
